@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PageMaster.master.cs" Inherits="Auction_Web_PhamHaiDangBTL.PageMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <link href="Css/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label> 
+                <asp:Timer runat="server" Interval="1000" OnTick="Unnamed1_Tick"></asp:Timer>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <header class="header">
+        <div class="header__logo">
+            <a href="HomePage.aspx">PHDWEB</a>
+        </div>
+        <div class="header__nav">
+            <ul class="header__nav-list">
+                <li class="header__nav-item">
+                    Buyer
+                    <ul class="header__subnav-list">
+                        <li class="header__subnav-item">
+                            <a href="ItemListView.aspx" class="header__subnav-link">List of item</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header__nav-item">
+                    Seller
+                    <ul class="header__subnav-list">
+                        <li class="header__subnav-item">
+                            <a href="AddItemPage.aspx" class="header__subnav-link">Add Item to Sell</a>
+                        </li>
+                        <li class="header__subnav-item">
+                            <a href="ViewAllUserPost" class="header__subnav-link">View all your post</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header__nav-item">
+                    Account Management
+                    <ul class="header__subnav-list">
+                        <li class="header__subnav-item">
+                            <a href="#" class="header__subnav-link">Update Username/Password</a>
+                        </li>
+                        <li class="header__subnav-item">
+                            <a href="#" class="header__subnav-link">Update Username/Password</a>
+                        </li>
+                        <li class="header__subnav-item">
+                            <a href="#" class="header__subnav-link">Update Username/Password</a>
+                        </li>
+                        <li class="header__subnav-item">
+                            <a href="#" class="header__subnav-link">Update Username/Password</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header__nav-item">
+                    Report
+                    <ul class="header__subnav-list">
+                        <li class="header__subnav-item">
+                            <a href="#" class="header__subnav-link">Top 5 Most Active Buyer</a>
+                        </li>
+                        <li class="header__subnav-item">
+                            <a href="#" class="header__subnav-link">Top 5 Most Active Buyer</a>
+                        </li>
+                        <li class="header__subnav-item">
+                            <a href="#" class="header__subnav-link">Top 5 Most Active Buyer</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="header__login">
+             <asp:Button ID="Login_Logout" runat="server" CssClass="btn btn-default" OnClick="Login_Logout_Click"/>
+             <asp:HyperLink ID="Register" runat="server" Text="Register" NavigateUrl="RegisterView.aspx"></asp:HyperLink>
+             <asp:Label ID="LoggedInAsLabel" runat="server"></asp:Label>
+        </div>
+    </header>
+    <div class="banner">
+        <img src="./Images/003-folkU-Header-Banner-1200x300-1.jpg" alt="" class="banner__img">
+    </div>
+    <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+    </div>
+    <footer class="footer">
+            AUCTION WEBSITE - Nhom 8 - De 20
+    </footer>
+        
+    </form>
+</body>
+</html>
