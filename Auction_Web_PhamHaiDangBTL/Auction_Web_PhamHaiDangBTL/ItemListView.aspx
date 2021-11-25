@@ -50,10 +50,11 @@
                         <label>Description:</label>
                         <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Eval("DESCRIPTION") %>' />
                     </div>
+                    <asp:Label ID="Label1" runat="server" Text="Not available"></asp:Label>
                 </td>
             </ItemTemplate>
         </asp:ListView>
-        <asp:SqlDataSource ID="SqlDataSourceItem" runat="server" ConnectionString="<%$ ConnectionStrings:AuctionWebsite %>" SelectCommand="SELECT * FROM [ITEM]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSourceItem" runat="server" ConnectionString="<%$ ConnectionStrings:AuctionWebsite %>" SelectCommand="SELECT * FROM [dbo].[ITEM]"></asp:SqlDataSource>
     </div>
     </form>
 </body>

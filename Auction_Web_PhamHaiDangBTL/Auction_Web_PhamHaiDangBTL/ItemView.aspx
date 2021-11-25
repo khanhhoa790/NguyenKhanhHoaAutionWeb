@@ -39,6 +39,6 @@
         <asp:Button ID="SubmitBid" runat="server" CssClass="btn btn-primary" Text="Submit Bid" OnClick="BidController"/>
     </div>
     </form>
-    <script src="javascript/timer.js"></script>
+    <script type="text/javascript" src="javascript/timer.js"></script>
 </body>
 </html>

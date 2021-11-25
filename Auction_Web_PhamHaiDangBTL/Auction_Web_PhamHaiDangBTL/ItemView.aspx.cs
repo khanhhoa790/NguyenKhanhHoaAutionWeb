@@ -76,38 +76,10 @@ namespace Auction_Web_PhamHaiDangBTL
                 return;
             }
 
-            query = "SELECT * FROM PERSON_ITEM WHERE PERSON_ID='" + Session["UserID"] + "' AND ITEM_ID='" + item_id + "'";
-            command = new SqlCommand(query, connection);
-            connection.Open();
-            reader = command.ExecuteReader();
-            if (reader.HasRows)
-            {
-                connection.Close();
-                if (Convert.ToSingle(NewBid.Text) == 0)
-                {
-                    query = "UPDATE PERSON_ITEM" +
-                            " SET BID_AMOUNT=0" +
-                            " WHERE PERSON_ID = '" + Session["UserID"] +
-                            "' AND ITEM_ID = '" + item_id + "'";
-                    command = new SqlCommand(query, connection);
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                    Server.Transfer("ItemListView.aspx");
+            int userID = (int)Session["UserID"];
 
-                }
-            }
-            else
-            {
-                connection.Close();
-                query = "INSERT INTO PERSON_ITEM (PERSON_ID, ITEM_ID, BID_AMOUNT)" +
-                        "VALUES ('" + Session["UserID"] + "', '" + item_id + "', '" + NewBid.Text + "')";
-                command = new SqlCommand(query, connection);
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                Server.Transfer("ItemListView.aspx");
-            }
+            query = "SELECT * FROM PERSON_ITEM WHERE PERSON_ID=" + userID + " AND ITEM_ID=" + item_id;
+            command = new SqlCommand(query, connection);
         }
     }
-}
+ }

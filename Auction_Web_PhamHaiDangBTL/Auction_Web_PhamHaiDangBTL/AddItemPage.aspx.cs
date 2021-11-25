@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -58,23 +59,49 @@ namespace Auction_Web_PhamHaiDangBTL
                                        startTime.ToString("MM/dd/yyyy hh:mm:ss") + "', '" + endTime.ToString("MM/dd/yyyy hh:mm:ss") + "')" +
                        "SELECT CAST(scope_identity() as int)";
             SQLCommand = new SqlCommand(SQLQuery, SQLConnection);
+            SqlDataAdapter ad = new SqlDataAdapter("select [NAME] from [dbo].[ITEM]", SQLConnection);
+            DataSet ds = new DataSet();
+
+            ad.Fill(ds);
+
+            int flag = 0;
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                if (Name.Text == ds.Tables[0].Rows[i]["NAME"].ToString())
+                {
+                    flag = 1;
+                }
+            }
+
+            if (flag == 1)
+            {
+                Response.Write("<script>alert('Duplicated')</script>");
+            }
+            else
+            {
+                SQLConnection.Open();
+                SQLResultID = (Int32)SQLCommand.ExecuteScalar();
+                SQLConnection.Close();
+            }    
 
             // Perform insertion and return a FK reference for use in weak entity tables
-            SQLConnection.Open();
-            SQLResultID = (Int32)SQLCommand.ExecuteScalar();
-            SQLConnection.Close();
+            //SQLConnection.Open();
+            //SQLResultID = (Int32)SQLCommand.ExecuteScalar();
+            //SQLConnection.Close();
 
             // Prepare to insert into weak entity PERSON_CREDITCARD
-            SQLQuery = "INSERT INTO ITEM_PICTURE (ITEM_ID, LOCATION)" +
-                       "VALUES ('" + SQLResultID + "', '" + OwnerName.Text.Trim() + "')"; // Temporary
-            SQLCommand = new SqlCommand(SQLQuery, SQLConnection);
+            //SQLQuery = "INSERT INTO ITEM_PICTURE (ITEM_ID, LOCATION)" +
+            //           "VALUES ('" + SQLResultID + "', '" + OwnerName.Text.Trim() + "')"; // Temporary
+            //SQLCommand = new SqlCommand(SQLQuery, SQLConnection);
 
-            // Perform insertion
-            SQLConnection.Open();
-            SQLCommand.ExecuteNonQuery();
-            SQLConnection.Close();
+            //// Perform insertion
+            //SQLConnection.Open();
+            //SQLCommand.ExecuteNonQuery();
+            //SQLConnection.Close();
 
             Server.Transfer("ItemListView.aspx");
         }
+
     }
 }
